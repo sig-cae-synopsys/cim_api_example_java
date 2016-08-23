@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="bin" path="src"/>
+	<classpathentry kind="var" path="JRE_LIB" rootpath="JRE_SRCROOT" sourcepath="JRE_SRC"/>
+	<classpathentry kind="con" path="D:/_coverity/CIM8502/doc/en/api/example/cim_api_example_java/cim_api_example_java/bin"/>
+	<classpathentry kind="lib" path="D:/_coverity/CIM8502/doc/en/api/example/cim_api_example_java/cim_api_example_java/lib/saaj-impl-1.3.jar"/>
+	<classpathentry kind="lib" path="D:/_coverity/CIM8502/doc/en/api/example/cim_api_example_java/cim_api_example_java/lib/saaj.jar"/>
+	<classpathentry kind="lib" path="D:/_coverity/CIM8502/doc/en/api/example/cim_api_example_java/cim_api_example_java/lib/xws-security.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
