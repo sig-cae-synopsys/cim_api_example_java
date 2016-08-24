@@ -8,6 +8,15 @@ Only the necessary class and function definitions are provided, the API calls th
 Helper functions, classes, call parameters, modularization are left to the implementers for simplicity and clarity.
 Create update delete calls involve the same spec object creations (see API reference), they are not provided here.
 
+For reference: 
+This project is using v9 of the api and has the com.coverity.ws.v6 ... v9 artifacts (with sources), so you don't need to import the artifacts
+You can import these using the wsimport with  flags --keep -s <dir> and point to the wsdl urls of your platform instance.
+the wsdl URLs are <connect URL>/ws/v9/configurationservice?wsdl and defectservice?wsdl respectively.
+(v6, v7, v8 is similar)
+Example:
+cd _misc\workspace\ws_artifacts
+wsimport -keep -s src http://flazar-840g2:8080/ws/v9/configurationservice?wsdl
+wsimport -keep -s src http://flazar-840g2:8080/ws/v9/defectservice?wsdl
 
 BUILD:
 build.xml has the following ant targets:
@@ -22,8 +31,8 @@ ant run       /builds and runs the distributable jar
 HINT:
 Because of the target dependencies: 
 ant clean
-ant jar 
-and you're done.
+ant jar (or ant run for testing)
+and you're done. 
 
 USAGE:
 java -jar ./wsgetAll.jar <server-address>:<port> <user> <password>
