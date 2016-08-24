@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.xml.datatype.XMLGregorianCalendar;
 import webService.*;
-import com.coverity.ws.v8.*;
+import com.coverity.ws.v9.*;
 import java.io.ByteArrayOutputStream;
 import java.util.zip.Inflater;
  
@@ -67,28 +67,36 @@ public class WsGetAll {
 			AttributeDefinitionDataObj attribute= configurationService.getAttribute(attributeDefinition);
 			System.out.println("------------getAttribute");
 			
-			//getAttributes
+			//getBackupConfiguration
 			List<AttributeDefinitionDataObj> attributes=configurationService.getAttributes();
 			BackupConfigurationDataObj backupConfiguration=configurationService.getBackupConfiguration();
+			System.out.println("------------getBackupConfiguration");
 			
-			//getCheckerProperties
-			CheckerPropertyFilterSpecDataObj filterSpec=new CheckerPropertyFilterSpecDataObj();
-			List<CheckerPropertyDataObj> checkerProperties=configurationService.getCheckerProperties(filterSpec);
-			System.out.println("------------getCheckerProperties");
+			//getCategoryNames -------------------------------new in v9 
+			List<LocalizedValueDataObj> categoryNames=configurationService.getCategoryNames();
+			System.out.println("------------getCategoryNames");
 			
-			//getCheckerSubcategoriesForProject
-			ProjectIdDataObj projectId2 = new ProjectIdDataObj();
-			projectId2.setName("gzip");
-			List<CheckerSubcategoryIdDataObj> checkerSubCategories=defectService.getCheckerSubcategoriesForProject(projectId2);
-			System.out.println("------------getCheckerSubcategoriesForProject");
+			//getCheckerNames -------------------------------new in v9 
+			List<String> checkerNames=configurationService.getCheckerNames();
+			System.out.println("------------getCheckerNames");
 			
-			//getCheckerSubcategoriesForStreams
-			StreamIdDataObj streamId3 = new StreamIdDataObj();
-			streamId3.setName("gzip-trunk");
-			List<StreamIdDataObj> streamIds1= new ArrayList<StreamIdDataObj>();
-			streamIds1.add(streamId3);			
-			List<CheckerSubcategoryIdDataObj> checkerSubCategories1=defectService.getCheckerSubcategoriesForStreams(streamIds1);
-			System.out.println("------------getCheckerSubcategoriesForStreams");
+			//getCheckerProperties  -------------------------------not in v9 
+			//CheckerPropertyFilterSpecDataObj filterSpec=new CheckerPropertyFilterSpecDataObj();
+			//List<CheckerPropertyDataObj> checkerProperties=configurationService.getCheckerProperties(filterSpec);
+			
+			//getCheckerSubcategoriesForProject -------------------not in v9
+			//ProjectIdDataObj projectId2 = new ProjectIdDataObj();
+			//projectId2.setName("gzip");
+			//List<CheckerSubcategoryIdDataObj> checkerSubCategories=defectService.getCheckerSubcategoriesForProject(projectId2);
+			//System.out.println("------------getCheckerSubcategoriesForProject");
+			
+			//getCheckerSubcategoriesForStreams --------------------not in v9
+			//StreamIdDataObj streamId3 = new StreamIdDataObj();
+			//streamId3.setName("gzip-trunk");
+			//List<StreamIdDataObj> streamIds1= new ArrayList<StreamIdDataObj>();
+			//streamIds1.add(streamId3);			
+			//List<CheckerSubcategoryIdDataObj> checkerSubCategories1=defectService.getCheckerSubcategoriesForStreams(streamIds1);
+			//System.out.println("------------getCheckerSubcategoriesForStreams");
 			
 			//getCommitState
             CommitStateDataObj commitState = configurationService.getCommitState();
@@ -348,8 +356,8 @@ public class WsGetAll {
                                String user,
                                String password) throws java.net.MalformedURLException {
         DefectServiceService dss = new DefectServiceService(
-                new URL("http://" + serverAddr + "/ws/v8/defectservice?wsdl"),
-                new QName("http://ws.coverity.com/v8", "DefectServiceService"));
+                new URL("http://" + serverAddr + "/ws/v9/defectservice?wsdl"),
+                new QName("http://ws.coverity.com/v9", "DefectServiceService"));
         DefectService ds = dss.getDefectServicePort();
 
         // Attach an authentication handler to it
@@ -363,8 +371,8 @@ public class WsGetAll {
                                       String user,
                                       String password) throws java.net.MalformedURLException {
         ConfigurationServiceService dss = new ConfigurationServiceService(
-                new URL("http://" + serverAddr + "/ws/v8/configurationservice?wsdl"),
-                new QName("http://ws.coverity.com/v8", "ConfigurationServiceService"));
+                new URL("http://" + serverAddr + "/ws/v9/configurationservice?wsdl"),
+                new QName("http://ws.coverity.com/v9", "ConfigurationServiceService"));
         ConfigurationService ds = dss.getConfigurationServicePort();
 
         // Attach an authentication handler to it
